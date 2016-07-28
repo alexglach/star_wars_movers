@@ -1,0 +1,26 @@
+<h1>Edit Your Move</h1>
+
+<%= form_for @move do |f| %>
+  <%= f.label "Your name:"%>
+  <%= f.text_field :name %>
+  <br>
+
+  <%= f.label "When are you moving?" %>
+  <%= f.date_select :date %>
+  <br>
+
+  <%= f.label "Which planet are you moving from?" %>
+  <%= f.select(:from, (@planets - ["unknown"])) %>
+  <br>
+
+  <%= f.label "Which planet are you moving from?" %>
+  <%= f.select(:to, (@planets - ["unknown"])) %>
+  <br>
+
+  <%= f.label "What type of vehicle do you need?" %>
+  <%= f.select(:vehicle, @vehicles) %>
+  <br>
+
+  <%= f.submit "Edit My Order" %>
+
+<% end %>

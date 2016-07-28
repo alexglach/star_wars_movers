@@ -1,0 +1,10 @@
+<h1>This is your move</h1>
+
+<h2>Date: <%= @move.date %></h2>
+<h2>From: <%= @move.from %></h2>
+<h2>To: <%= @move.to %></h2>
+<h2>Vehicle: <%= @move.vehicle %></h2>
+
+
+<%= link_to "Edit This Move", edit_move_path(@move.id) %>
+  <%= link_to "Remove This Move", move_path(@move.id), :method => :delete %>

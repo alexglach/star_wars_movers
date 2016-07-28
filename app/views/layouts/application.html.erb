@@ -7,7 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<% flash.each do |type, message| %>
+    <div>
+      <strong><%= message %></strong>
+    </div>
+  <% end %>
+<%= render "shared/navbar" %>
 <%= yield %>
 
 </body>

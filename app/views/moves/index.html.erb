@@ -1,0 +1,17 @@
+<h1>Welcome to Star Wars Movers!</h1>
+<h2>The one-stop shop to plan your next intergalactic move.</h2>
+
+<h3>Your moves:</h3>
+
+<% @moves.each do |move| %>
+  <strong>Name: </strong> <%= move.name %><br>
+  <strong>Date: </strong> <%= move.date %><br>
+  <strong>From: </strong> <%= move.from %><br>
+  <strong>To: </strong> <%= move.to %><br>
+  <strong>Vehicle: </strong><%= move.vehicle %><br>
+  <%= link_to "More Details", move_path(move.id) %>
+  <%= link_to "Edit This Move", edit_move_path(move.id) %>
+  <%= link_to "Remove This Move", move_path(move.id), :method => :delete %>
+  <br><br>
+
+<% end %>
