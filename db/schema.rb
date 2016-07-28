@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728154433) do
+ActiveRecord::Schema.define(version: 20160728214439) do
 
   create_table "moves", force: :cascade do |t|
     t.string   "name"
@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(version: 20160728154433) do
     t.string   "from"
     t.string   "to"
     t.string   "vehicle"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "from_movers"
+    t.string   "to_movers"
   end
 
 end

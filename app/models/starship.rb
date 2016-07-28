@@ -8,11 +8,11 @@ class Starship
   end
 
   def generate_starships
-    count = Tatooine::Starship.count / 10
+    # count = Tatooine::Starship.count / 10
     @starships = Tatooine::Starship.list
-    count.times do
-      @starships.concat Tatooine::Starship.next
-    end
+    # count.times do
+    #   @starships.concat Tatooine::Starship.next
+    # end
     @starships.each do |starship|
       @names << starship.name
     end

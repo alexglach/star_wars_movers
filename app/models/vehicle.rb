@@ -8,11 +8,11 @@ class Vehicle
   end
 
   def generate_vehicles
-    count = Tatooine::Vehicle.count / 10
+    # count = Tatooine::Vehicle.count / 10
     @vehicles = Tatooine::Vehicle.list
-    count.times do
-      @vehicles.concat Tatooine::Vehicle.next
-    end
+    # count.times do
+    #   @vehicles.concat Tatooine::Vehicle.next
+    # end
     @vehicles.each do |vehicle|
       @names << vehicle.name
     end

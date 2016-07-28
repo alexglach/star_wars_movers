@@ -8,11 +8,11 @@ class Person
   end
 
   def generate_people
-    count = Tatooine::Person.count / 10
+    # count = Tatooine::Person.count / 10
     @people = Tatooine::Person.list
-    count.times do
-      @people.concat Tatooine::Person.next
-    end
+    # count.times do
+    #   @people.concat Tatooine::Person.next
+    # end
     @people.each do |person|
       @names << person.name
     end

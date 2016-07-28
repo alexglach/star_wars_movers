@@ -51,8 +51,14 @@ class MovesController < ApplicationController
   end
 
   def update
-     @move = Move.find(params[:id])
-    if @move.update(whitelisted_params)
+    @move = Move.find(params[:id])
+    if @move.update(:from_movers => params[:from_movers])
+      flash[:success] = "Your move has been saved!"
+      redirect_to move_path(@move.id)
+    elsif @move.update(:to_movers => params[:from_movers])
+      flash[:success] = "Your move has been saved!"
+      redirect_to move_path(@move.id)
+    elsif @move.update(params)
       flash[:success] = "Your move has been saved!"
       redirect_to move_path(@move.id)
     else
@@ -77,7 +83,7 @@ class MovesController < ApplicationController
   private
 
   def whitelisted_params
-    params.require(:move).permit(:name, :date, :to, :from, :vehicle)
+    params.require(:move).permit(:name, :date, :to, :from, :vehicle, :to_movers, :from_movers)
   end
 
 

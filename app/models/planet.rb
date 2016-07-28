@@ -8,11 +8,11 @@ class Planet
   end
 
   def generate_planets
-    count = Tatooine::Planet.count / 10
+    # count = Tatooine::Planet.count / 10
     @planets = Tatooine::Planet.list
-    count.times do
-      @planets.concat Tatooine::Planet.next
-    end
+    # count.times do
+    #   @planets.concat Tatooine::Planet.next
+    # end
     @planets.each do |planet|
       @names << planet.name
     end

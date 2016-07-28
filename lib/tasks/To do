@@ -2,9 +2,16 @@
 - Learn more info for planets, vehicles
 
 - Log in and log out
-- Add movers based on where your to is and where your from is
 - Break into quotes and orders so that you can get more info
-- Do you need hyperspeed? Yes and no as links and then the form changes based on answer
 - Do everything through update forms
   - Start with basic info and then you submit once -- then you're brought to update
   - 
+
+  <% if @move.from_movers %>
+  <h3> Mover helping you move out: </h3>
+  <%= @move.from_movers %>
+<% end %>
+<% if @move.to_movers %>
+  <h3> Mover helping you move in: </h3>
+  <%= @move.to_movers %>
+<% end %>

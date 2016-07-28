@@ -1,9 +1,12 @@
-<h1>This is your move</h1>
+<h1>Here are the details for your move:</h1>
 
 <h2>Date: <%= @move.date %></h2>
 <h2>From: <%= @move.from %></h2>
 <h2>To: <%= @move.to %></h2>
 <h2>Vehicle: <%= @move.vehicle %></h2>
+
+
+
 
 
 <%= link_to "Edit This Move", edit_move_path(@move.id) %>
@@ -15,16 +18,16 @@
 <p>Choose from the following experienced movers who live there:</p>
 <% @people.each do |person| %>
   <% if person.homeworld.url == @from_planet_url %>
-    <%= person.name %><br>
+    <%= person.name %> <%= link_to "Hire This Person to Help You Move", move_path(:id => @move.id, :from_movers => person.name), :method => :patch %><br>
   <% end %> 
 <% end %>
 
 
 
-<h3>Need help moving in to <%= @move.to %>?: </h3>
+<h3>Need help moving in to <%= @move.to %>? </h3>
 <p>Choose from the following experienced movers who live there:</p>
 <% @people.each do |person| %>
   <% if person.homeworld.url == @to_planet_url %>
-    <%= person.name %><br>
+    <%= person.name %> <%= link_to "Hire This Person to Help You Move", move_path(:id => @move.id, :to_movers => person.name), :method => :patch %><br>
   <% end %> 
 <% end %>
