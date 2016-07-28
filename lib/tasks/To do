@@ -1,8 +1,10 @@
-- Add APIs
-  - Add model
-  - Add scripts to get all names
+
 - Learn more info for planets, vehicles
-- Add option for hyperspeed or not hyperspeed
+
 - Log in and log out
 - Add movers based on where your to is and where your from is
 - Break into quotes and orders so that you can get more info
+- Do you need hyperspeed? Yes and no as links and then the form changes based on answer
+- Do everything through update forms
+  - Start with basic info and then you submit once -- then you're brought to update
+  - 

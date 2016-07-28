@@ -1,21 +1,22 @@
 class Planet
 
-  attr_reader :all, :planets
+  attr_reader :names, :planets
 
   def initialize
-    @all = []
+    @names = []
     generate_planets
   end
 
   def generate_planets
+    count = Tatooine::Planet.count / 10
     @planets = Tatooine::Planet.list
-    6.times do
+    count.times do
       @planets.concat Tatooine::Planet.next
     end
     @planets.each do |planet|
-      @all << planet.name
+      @names << planet.name
     end
-    @all.sort!
+    @names.sort!
   end
 
 

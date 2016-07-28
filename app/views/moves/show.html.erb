@@ -8,3 +8,20 @@
 
 <%= link_to "Edit This Move", edit_move_path(@move.id) %>
   <%= link_to "Remove This Move", move_path(@move.id), :method => :delete %>
+<br>
+
+<%= @from_planet_url %>
+<h3>Need help moving out from <%= @move.from %>?: </h3>
+<p>Choose from the following experienced movers who live there</p>
+<% @people.each do |person| %>
+  <%= puts person.name if person.homeworld == @from_planet_url %>
+<% end %>
+
+
+<%= @to_planet_url %>
+<%= @people[1].homeworld %>
+<h3>Need help moving in to <%= @move.to %>?: </h3>
+<p>Choose from the following experienced movers who live there</p>
+<% @people.each do |person| %>
+  <%= puts person.name if person.homeworld == @to_planet_url %>
+<% end %>

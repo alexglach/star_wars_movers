@@ -1,21 +1,22 @@
 class Vehicle
 
-  attr_reader :all, :vehicles
+  attr_reader :names, :vehicles
 
   def initialize
-    @all = []
+    @names = []
     generate_vehicles
   end
 
   def generate_vehicles
+    count = Tatooine::Vehicle.count / 10
     @vehicles = Tatooine::Vehicle.list
-    3.times do
+    count.times do
       @vehicles.concat Tatooine::Vehicle.next
     end
     @vehicles.each do |vehicle|
-      @all << vehicle.name
+      @names << vehicle.name
     end
-    @all.sort!
+    @names.sort!
   end
 
 

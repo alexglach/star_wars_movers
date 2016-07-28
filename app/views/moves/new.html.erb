@@ -1,5 +1,7 @@
-<h1>Plan Your New Move</h1>
-<p>We know that planning a move can be tough. But fill out this form and we will try to make it as smooth as possible.</p>
+<h1>Plan Your New Rental</h1>
+<p>We know that renting a moving vehicle can be tough. But fill out this form and we will try to make it as smooth as possible.</p>
+
+
 
 <%= form_for @move do |f| %>
   <%= f.label "Your name:"%>
@@ -18,10 +20,24 @@
   <%= f.select(:to, (@planets - ["unknown"])) %>
   <br>
 
-  <%= f.label "What type of vehicle do you need?" %>
-  <%= f.select(:vehicle, @vehicles) %>
-  <br>
+  <ul> Do you need hyperdrive?
+    <li style='display:inline-block'><%= link_to "Yes", new_move_path(:hyperdrive => "yes") %></li>
+    <li style='display:inline-block'><%= link_to "No", new_move_path(:hyperdrive => "no") %></li>
+  </ul>
 
-  <%= f.submit "Place My Order" %>
+  <% if @hyperdrive == "no" %>
+    <%= f.label "Choose your vehicle: (no hypderdrive) " %>
+    <%= f.select(:vehicle, @vehicles) %>
+    <br>
+    <%= f.submit "Place My Order" %>
+  <% elsif @hyperdrive == "yes" %>
+    <%= f.label "Choose your starship: (hyperdrive included) " %>
+    <%= f.select(:vehicle, @starships) %>
+    <br>
+    <%= f.submit "Place My Order" %>
+  <% end %>
+
+
+  
 
 <% end %>

@@ -2,15 +2,24 @@ class MovesController < ApplicationController
 
   def index
     @moves = Move.all
-    session[:planets] = Planet.new.all
-    session[:vehicle] = Vehicle.new.all
+    
 
   end
 
   def new
-    @move = Move.new
-    @planets = session[:planets]
-    @vehicles = session[:vehicle]
+    if params[:hyperdrive]
+      @hyperdrive = params[:hyperdrive]
+      @move = Move.new
+      @planets = Planet.new.names
+      @vehicles = Vehicle.new.names
+      @starships = Starship.new.names
+
+    else
+      @move = Move.new
+      @planets = Planet.new.names
+  
+
+    end
   end
 
   def create
@@ -26,12 +35,19 @@ class MovesController < ApplicationController
 
   def show
     @move = Move.find(params[:id])
+    @people = Person.new.people
+    to_planet = Planet.new.planets.select {|planet| planet.name == @move.to}
+    @to_planet_url = to_planet[0].url
+    from_planet = Planet.new.planets.select {|planet| planet.name == @move.from}
+    @from_planet_url = from_planet[0].url
   end
 
   def edit
     @move = Move.find(params[:id])
-    @planets = session[:planets]
-    @vehicles = session[:vehicle]
+    @planets = Planet.new.names
+    @vehicles = Vehicle.new.names
+    @people = Person.new.names
+    @starships = Starship.new.names
   end
 
   def update
@@ -63,5 +79,7 @@ class MovesController < ApplicationController
   def whitelisted_params
     params.require(:move).permit(:name, :date, :to, :from, :vehicle)
   end
+
+
 
 end
