@@ -11,14 +11,17 @@ class MovesController < ApplicationController
     if params[:hyperdrive]
       @hyperdrive = params[:hyperdrive]
       @move = Move.new
-      @planets = Planet.new.names
+      @planets = session[:planets]
       @vehicles = Vehicle.new.names
       @starships = Starship.new.names
+      session[:planets] = @planets
+      session[:vehicles] = @vehicles
+      session[:starships] = @starships
 
     else
       @move = Move.new
       @planets = Planet.new.names
-
+       session[:planets] = @planets
   
 
     end
@@ -46,23 +49,26 @@ class MovesController < ApplicationController
 
   def edit
     @move = Move.find(params[:id])
-    @planets = Planet.new.names
-    @vehicles = Vehicle.new.names
-    @people = Person.new.names
-    @starships = Starship.new.names
+    @planets = session[:planets]
+    @vehicles = session[:vehicles]
+    @starships = session[:starships]
+    if session[:people]
+      @people = session[:people]
+    else
+      @people = Person.new.names
+      session[:people] = @people
+    end
   end
 
   def update
     @move = Move.find(params[:id])
-    @move.update(whitelisted_params)
-    redirect_to move_path(@move.id)
-    # if @move.update(whitelisted_params)
-    #   flash[:success] = "Your move has been saved!"
-    #   redirect_to move_path(@move.id)
-    # else
-    #   flash.now[:error] = "Your move could not be saved. Please check the error message"
-    #   render :new
-    # end
+    if @move.update(whitelisted_params)
+      flash[:success] = "Your move has been saved!"
+      redirect_to move_path(@move.id)
+    else
+      flash.now[:error] = "Your move could not be saved. Please check the error message"
+      render :new
+    end
 
   end
 

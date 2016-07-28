@@ -17,6 +17,7 @@ class Planet
       @names << planet.name
     end
     @names.sort!
+    
   end
 
 

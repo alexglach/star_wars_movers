@@ -17,6 +17,7 @@ class Person
       @names << person.name
     end
     @names.sort!
+    
   end
 
 

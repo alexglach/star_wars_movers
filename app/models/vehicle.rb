@@ -17,6 +17,7 @@ class Vehicle
       @names << vehicle.name
     end
     @names.sort!
+    
   end
 
 
