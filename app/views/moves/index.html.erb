@@ -9,6 +9,12 @@
   <strong>From: </strong> <%= move.from %><br>
   <strong>To: </strong> <%= move.to %><br>
   <strong>Vehicle: </strong><%= move.vehicle %><br>
+  <% if move.from_movers %>
+  <strong> Mover helping you move out: </strong> <%= move.from_movers %><br>
+  <% end %>
+  <% if move.to_movers %>
+  <strong> Mover helping you move in: </strong><%= move.to_movers %><br>
+  <% end %>
   <%= link_to "More Details", move_path(move.id) %>
   <%= link_to "Edit This Move", edit_move_path(move.id) %>
   <%= link_to "Remove This Move", move_path(move.id), :method => :delete %>

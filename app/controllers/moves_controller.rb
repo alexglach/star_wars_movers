@@ -2,6 +2,7 @@ class MovesController < ApplicationController
 
   def index
     @moves = Move.all
+
     
 
   end
@@ -17,6 +18,7 @@ class MovesController < ApplicationController
     else
       @move = Move.new
       @planets = Planet.new.names
+
   
 
     end
@@ -52,19 +54,15 @@ class MovesController < ApplicationController
 
   def update
     @move = Move.find(params[:id])
-    if @move.update(:from_movers => params[:from_movers])
-      flash[:success] = "Your move has been saved!"
-      redirect_to move_path(@move.id)
-    elsif @move.update(:to_movers => params[:from_movers])
-      flash[:success] = "Your move has been saved!"
-      redirect_to move_path(@move.id)
-    elsif @move.update(params)
-      flash[:success] = "Your move has been saved!"
-      redirect_to move_path(@move.id)
-    else
-      flash.now[:error] = "Your move could not be saved. Please check the error message"
-      render :new
-    end
+    @move.update(whitelisted_params)
+    redirect_to move_path(@move.id)
+    # if @move.update(whitelisted_params)
+    #   flash[:success] = "Your move has been saved!"
+    #   redirect_to move_path(@move.id)
+    # else
+    #   flash.now[:error] = "Your move could not be saved. Please check the error message"
+    #   render :new
+    # end
 
   end
 
@@ -83,7 +81,7 @@ class MovesController < ApplicationController
   private
 
   def whitelisted_params
-    params.require(:move).permit(:name, :date, :to, :from, :vehicle, :to_movers, :from_movers)
+    params.require(:move).permit(:name, :date, :to, :from, :vehicle, "to_movers", "from_movers")
   end
 
 

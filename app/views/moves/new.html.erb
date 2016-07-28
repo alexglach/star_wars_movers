@@ -6,7 +6,6 @@
   <li style='display:inline-block'><%= link_to "No", new_move_path(:hyperdrive => "no") %></li>
 </ul>
 
-
 <%= form_for @move do |f| %>
   <%= f.label "Your name:"%>
   <%= f.text_field :name %>
@@ -23,6 +22,7 @@
   <%= f.label "Which planet are you moving from?" %>
   <%= f.select(:to, (@planets - ["unknown"])) %>
   <br>
+
 
   
 

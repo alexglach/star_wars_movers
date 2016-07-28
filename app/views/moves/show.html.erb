@@ -5,6 +5,13 @@
 <h2>To: <%= @move.to %></h2>
 <h2>Vehicle: <%= @move.vehicle %></h2>
 
+<% if @move.from_movers %>
+  <h3> Mover helping you move out: <%= @move.from_movers %></h3>
+<% end %>
+<% if @move.to_movers %>
+  <h3> Mover helping you move in: <%= @move.to_movers %></h3>
+<% end %>
+
 
 
 
@@ -13,21 +20,34 @@
   <%= link_to "Remove This Move", move_path(@move.id), :method => :delete %>
 <br>
 
+<% unless @move.from_movers %>
+  <h3>Need help moving out from <%= @move.from %>? </h3>
+  <p>Choose from the following experienced movers who live there:</p>
+  <% @people.each do |person| %>
+    <% if person.homeworld.url == @from_planet_url %>
+      <%= form_for @move do |f| %>
+      <%= f.label person.name%>
+      <%= f.hidden_field :from_movers, :value => person.name %>
+      <%= f.submit "Hire This Mover" %>
+      <% end %>
+      <br>
 
-<h3>Need help moving out from <%= @move.from %>? </h3>
-<p>Choose from the following experienced movers who live there:</p>
-<% @people.each do |person| %>
-  <% if person.homeworld.url == @from_planet_url %>
-    <%= person.name %> <%= link_to "Hire This Person to Help You Move", move_path(:id => @move.id, :from_movers => person.name), :method => :patch %><br>
-  <% end %> 
+    <% end %> 
+  <% end %>
 <% end %>
 
 
-
-<h3>Need help moving in to <%= @move.to %>? </h3>
-<p>Choose from the following experienced movers who live there:</p>
-<% @people.each do |person| %>
-  <% if person.homeworld.url == @to_planet_url %>
-    <%= person.name %> <%= link_to "Hire This Person to Help You Move", move_path(:id => @move.id, :to_movers => person.name), :method => :patch %><br>
-  <% end %> 
+<% unless @move.to_movers %>
+  <h3>Need help moving in to <%= @move.to %>? </h3>
+  <p>Choose from the following experienced movers who live there:</p>
+  <% @people.each do |person| %>
+    <% if person.homeworld.url == @to_planet_url %>
+      <%= form_for @move do |f| %>
+      <%= f.label person.name%>
+      <%= f.hidden_field :to_movers, :value => person.name %>
+      <%= f.submit "Hire This Mover" %>
+      <% end %>
+      <br>
+    <% end %> 
+  <% end %>
 <% end %>
